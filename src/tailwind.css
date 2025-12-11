@@ -10,6 +10,8 @@
   --font-family-sans: var(--font-poppins);
   --font-family-serif: var(--font-source-serif);
   --font-family-display: var(--font-bebas);
+
+  --text-tiny: 0.5rem; /* 8px */
   
   /* Custom spacing for product grids */
   --spacing-product-gap: 1rem;
@@ -22,12 +24,13 @@
   --animate-fade-in: fade-in 0.3s ease-in forwards;
   
   /* Scrollbar customization */
-  --scrollbar-height: 8px;
+  --scrollbar-height: 4px;
   --scrollbar-thumb: #9ca3af;
   --scrollbar-thumb-hover: #6b7280;
 
   --color-primary: #5C7962;
   --color-neutral-black: #231F20;
+  --color-neutral-gray: #DDD6D7;
   --color-secondary: #5C553A;
   --color-muted-black: #1C1D1D;
   --color-medium-gray: #707070;
@@ -47,24 +50,10 @@
  */
 .best-sellers-grid {
   @apply grid grid-cols-2 gap-4;
-  @apply md:flex md:gap-6 md:overflow-x-auto md:pb-4 md:scroll-smooth;
+  @apply md:flex md:gap-6 md:overflow-x-auto md:pb-4;
   
-  /* Scrollbar styling */
   &::-webkit-scrollbar {
-    height: var(--scrollbar-height);
-  }
-  
-  &::-webkit-scrollbar-track {
-    @apply bg-transparent;
-  }
-  
-  &::-webkit-scrollbar-thumb {
-    background-color: var(--scrollbar-thumb);
-    @apply rounded;
-    
-    &:hover {
-      background-color: var(--scrollbar-thumb-hover);
-    }
+    @apply hidden;
   }
 }
 
@@ -88,7 +77,7 @@
 }
 
 .product-badge {
-  @apply inline-block px-3 py-1 rounded-full uppercase border border-black font-bebas font-normal text-xs
+  @apply inline-block px-3 py-1 rounded-full uppercase border border-black font-bebas font-normal text-tiny md:text-xs;
 }
 
 .product-badge--best-seller {
@@ -97,4 +86,17 @@
 
 .product-badge--discount {
   @apply bg-primary text-white;
+}
+
+.custom-scrollbar {
+  @apply absolute left-0 right-0 bottom-4 h-1 bg-neutral-gray rounded-sm transition-all duration-200 z-10 hover:h-1.5 hidden md:block;
+
+  &.dragging {
+    @apply h-1.5;
+  }
+
+}
+
+.custom-scrollbar-thumb {
+  @apply absolute bottom-0 h-full bg-black rounded-sm cursor-pointer transition-opacity duration-200 hover:opacity-80;
 }

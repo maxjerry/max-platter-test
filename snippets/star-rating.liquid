@@ -39,33 +39,25 @@
   <div class="flex items-center gap-0.5">
     <!-- Full stars -->
     {% for i in (1..full_stars) %}
-      <svg class="w-4 h-4 fill-current text-black" viewBox="0 0 24 24">
-        <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/>
-      </svg>
+      {% render 'icon-star-full' %}
     {% endfor %}
     
     <!-- Partial star -->
     {% if has_partial_star %}
-      <svg class="w-4 h-4 text-black" viewBox="0 0 24 24">
-        <defs>
-          <linearGradient id="partial-{{ product_id }}-{{ index }}">
-            <stop offset="{{ remainder_percent }}%" stop-color="currentColor"/>
-            <stop offset="{{ remainder_percent }}%" stop-color="transparent"/>
-          </linearGradient>
-        </defs>
-        <path fill="url(#partial-{{ product_id }}-{{ index }})" stroke="currentColor" stroke-width="1" d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/>
-      </svg>
+      {% render 'icon-star-partial', 
+        product_id: product_id,
+        index: index,
+        remainder_percent: remainder_percent
+      %}
     {% endif %}
     
     <!-- Empty stars -->
     {% for i in (1..empty_stars) %}
-      <svg class="w-4 h-4 text-black" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1">
-        <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/>
-      </svg>
+      {% render 'icon-star-empty' %}
     {% endfor %}
   </div>
   
   <span class="text-medium-gray font-poppins font-normal text-xs">
-    {{ rating_value | round: 1 }} ({{ review_count }} {{ 'products.reviews' | t }})
+    {{ review_count }} {{ 'products.reviews' | t }}
   </span>
 </div>

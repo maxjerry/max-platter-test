@@ -16,18 +16,29 @@
     <!-- Image Container -->
     <div class="relative aspect-square bg-gray-100 rounded-lg overflow-hidden mb-4">
       {% if product.featured_image %}
+        <!-- Primary Image -->
         <img 
           src="{{ product.featured_image | image_url: width: 500 }}"
           alt="{{ product.featured_image.alt | escape }}"
           loading="lazy"
-          class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
+          class="absolute top-0 left-0 w-full h-full object-cover transition-opacity duration-300 opacity-100 group-hover:opacity-0 group-active:opacity-0 z-1"
         >
+        
+        <!-- Secondary Image (shows on hover) -->
+        {% if product.images[1] %}
+          <img 
+            src="{{ product.images[1] | image_url: width: 500 }}"
+            alt="{{ product.images[1].alt | escape }}"
+            loading="lazy"
+            class="absolute top-0 left-0 w-full h-full object-cover transition-opacity duration-300 opacity-0 group-hover:opacity-100 group-active:opacity-100 z-2"
+          >
+        {% endif %}
       {% else %}
         {{ 'product-1' | placeholder_svg_tag: 'w-full h-full object-cover' }}
       {% endif %}
 
       <!-- Badges -->
-      <div class="absolute top-3 left-3 right-3 flex flex-row justify-between">
+      <div class="absolute top-1 left-1 right-1 md:top-3 md:left-3 md:right-3 flex flex-row justify-between z-10">
         {% if product.tags contains 'best-seller' %}
           <span class="product-badge product-badge--best-seller">
             {{ 'products.badges.best_seller' | t }}
@@ -44,7 +55,7 @@
     </div>
 
     <!-- Product Info -->
-    <div class="space-y-2 px-3">
+    <div class="space-y-2 px-1 md:px-3">
       <h3 class="text-sm md:text-xl line-clamp-2 font-bebas font-normal uppercase text-muted-black">
         {{ product.title }}
       </h3>
