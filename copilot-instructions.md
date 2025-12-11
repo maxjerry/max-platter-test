@@ -1,0 +1,1 @@
+/home/max/Documents/max-platter-test-theme/AGENTS.md
