@@ -2,13 +2,13 @@
   <div class="container mx-auto px-4 py-12 md:py-16">
     <!-- Header -->
     <div class="flex items-center justify-between mb-8">
-      <h2 class="text-3xl md:text-4xl font-bold">
+      <h2 class="text-3xl md:text-4xl font-source-serif text-neutral-black font-black">
         {{ section.settings.heading }}
       </h2>
       {% if section.settings.show_view_all and section.settings.collection %}
         <a 
           href="{{ section.settings.collection.url }}" 
-          class="hidden md:flex items-center gap-2 text-sm font-medium"
+          class="hidden md:flex items-center gap-2 text-sm font-semibold font-poppins text-secondary tracking-wide"
         >
           {{ section.settings.view_all_text }}
           {% render 'icon-arrow-right' %}
@@ -37,7 +37,7 @@
     <div class="md:hidden mt-8">
       <button 
         type="button"
-        class="show-more-btn w-full bg-black text-white py-4 px-6 rounded-full font-medium hover:bg-gray-800 transition-colors"
+        class="show-more-btn w-full bg-muted-black text-white py-4 px-6 rounded-full hover:bg-gray-800 transition-colors font-poppins font-semibold text-base"
         data-show-text="{{ section.settings.show_more_text }}"
         data-show-less-text="{{ section.settings.show_less_text }}"
       >

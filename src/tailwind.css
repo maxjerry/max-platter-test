@@ -25,6 +25,12 @@
   --scrollbar-height: 8px;
   --scrollbar-thumb: #9ca3af;
   --scrollbar-thumb-hover: #6b7280;
+
+  --color-primary: #5C7962;
+  --color-neutral-black: #231F20;
+  --color-secondary: #5C553A;
+  --color-muted-black: #1C1D1D;
+  --color-medium-gray: #707070;
 }
 
 @keyframes fade-in {
@@ -82,13 +88,13 @@
 }
 
 .product-badge {
-  @apply inline-block px-3 py-1 rounded-full text-xs font-bold uppercase;
+  @apply inline-block px-3 py-1 rounded-full uppercase border border-black font-bebas font-normal text-xs
 }
 
 .product-badge--best-seller {
-  @apply bg-white text-black border-2 border-black;
+  @apply bg-white text-black;
 }
 
 .product-badge--discount {
-  @apply bg-green-700 text-white;
+  @apply bg-primary text-white;
 }
