@@ -1,0 +1,17 @@
+{
+  "name": "max-platter-test-theme",
+  "version": "1.0.0",
+  "description": "Shopify theme with Tailwind CSS support",
+  "scripts": {
+    "dev": "shopify theme dev --store=max-platter-test-store --theme-editor-sync",
+    "tailwind": "tailwindcss -i ./src/tailwind.css -o ./assets/tailwind.css --watch",
+    "build": "tailwindcss -i ./src/tailwind.css -o ./assets/tailwind.css --minify"
+  },
+  "keywords": ["shopify", "theme", "tailwind"],
+  "author": "",
+  "license": "MIT",
+  "devDependencies": {
+    "@tailwindcss/cli": "latest",
+    "tailwindcss": "latest"
+  }
+}
