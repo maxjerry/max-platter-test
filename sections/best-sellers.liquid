@@ -1,0 +1,98 @@
+<div class="best-sellers-section w-full">
+  <div class="container mx-auto px-4 py-12 md:py-16">
+    <!-- Header -->
+    <div class="flex items-center justify-between mb-8">
+      <h2 class="text-3xl md:text-4xl font-bold">
+        {{ section.settings.heading }}
+      </h2>
+      {% if section.settings.show_view_all and section.settings.collection %}
+        <a 
+          href="{{ section.settings.collection.url }}" 
+          class="hidden md:flex items-center gap-2 text-sm font-medium"
+        >
+          {{ section.settings.view_all_text }}
+          {% render 'icon-arrow-right' %}
+        </a>
+      {% endif %}
+    </div>
+
+    <!-- Products Grid/Scroll -->
+    <div class="best-sellers-grid group/grid">
+      {% if section.settings.collection != blank and section.settings.collection.products.size > 0 %}
+        {% for product in section.settings.collection.products limit: 10 %}
+          {% render 'best-sellers-card',
+            product: product,
+            index: forloop.index
+          %}
+        {% endfor %}
+      {% else %}
+        <!-- Placeholder products for theme editor -->
+        {% for i in (1..10) %}
+          {% render 'best-sellers-placeholder-card', index: i %}
+        {% endfor %}
+      {% endif %}
+    </div>
+
+    <!-- Mobile Show More Button -->
+    <div class="md:hidden mt-8">
+      <button 
+        type="button"
+        class="show-more-btn w-full bg-black text-white py-4 px-6 rounded-full font-medium hover:bg-gray-800 transition-colors"
+        data-show-text="{{ section.settings.show_more_text }}"
+        data-show-less-text="{{ section.settings.show_less_text }}"
+      >
+        {{ section.settings.show_more_text }}
+      </button>
+    </div>
+  </div>
+</div>
+
+<script src="{{ 'best-sellers.js' | asset_url }}" defer></script>
+
+{% schema %}
+{
+  "name": "t:sections.best_sellers.name",
+  "settings": [
+    {
+      "type": "text",
+      "id": "heading",
+      "label": "t:sections.best_sellers.settings.heading.label",
+      "default": "Best Sellers"
+    },
+    {
+      "type": "collection",
+      "id": "collection",
+      "label": "t:sections.best_sellers.settings.collection.label"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_view_all",
+      "label": "t:sections.best_sellers.settings.show_view_all.label",
+      "default": true
+    },
+    {
+      "type": "text",
+      "id": "view_all_text",
+      "label": "t:sections.best_sellers.settings.view_all_text.label",
+      "default": "Shop All Best Sellers"
+    },
+    {
+      "type": "text",
+      "id": "show_more_text",
+      "label": "t:sections.best_sellers.settings.show_more_text.label",
+      "default": "Show More"
+    },
+    {
+      "type": "text",
+      "id": "show_less_text",
+      "label": "t:sections.best_sellers.settings.show_less_text.label",
+      "default": "Show Less"
+    }
+  ],
+  "presets": [
+    {
+      "name": "t:sections.best_sellers.presets.name"
+    }
+  ]
+}
+{% endschema %}

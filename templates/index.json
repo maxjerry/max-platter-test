@@ -11,10 +11,24 @@
   "sections": {
     "main": {
       "type": "hello-world",
+      "disabled": true,
       "settings": {}
+    },
+    "best_sellers_dwRinN": {
+      "type": "best-sellers",
+      "name": "t:sections.best_sellers.presets.name",
+      "settings": {
+        "heading": "Best Sellers",
+        "collection": "best-sellers",
+        "show_view_all": true,
+        "view_all_text": "Shop All Best Sellers",
+        "show_more_text": "Show More",
+        "show_less_text": "Show Less"
+      }
     }
   },
   "order": [
-    "main"
+    "main",
+    "best_sellers_dwRinN"
   ]
 }

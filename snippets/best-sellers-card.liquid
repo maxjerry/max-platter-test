@@ -1,0 +1,77 @@
+{% doc %}
+  Renders a product card for the best sellers section.
+
+  @param {product} product - The product object to render
+  @param {number} index - The product index in the list
+
+  @example
+  {% render 'best-sellers-card', 
+    product: product, 
+    index: forloop.index
+  %}
+{% enddoc %}
+
+<div class="product-card" data-product-index="{{ index }}">
+  <a href="{{ product.url }}" class="group flex flex-col">
+    <!-- Image Container -->
+    <div class="relative aspect-square bg-gray-100 rounded-lg overflow-hidden mb-4">
+      {% if product.featured_image %}
+        <img 
+          src="{{ product.featured_image | image_url: width: 500 }}"
+          alt="{{ product.featured_image.alt | escape }}"
+          loading="lazy"
+          class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
+        >
+      {% else %}
+        {{ 'product-1' | placeholder_svg_tag: 'w-full h-full object-cover' }}
+      {% endif %}
+
+      <!-- Badges -->
+      <div class="absolute top-3 left-3 right-3 flex flex-row justify-between">
+        {% if product.tags contains 'best-seller' %}
+          <span class="product-badge product-badge--best-seller">
+            {{ 'products.badges.best_seller' | t }}
+          </span>
+        {% endif %}
+        
+        {% if product.compare_at_price > product.price %}
+          {% assign discount = product.compare_at_price | minus: product.price | times: 100 | divided_by: product.compare_at_price %}
+          <span class="product-badge product-badge--discount">
+            {{ 'products.badges.save' | t }} {{ discount }}%
+          </span>
+        {% endif %}
+      </div>
+    </div>
+
+    <!-- Product Info -->
+    <div class="space-y-2">
+      <h3 class="text-sm md:text-base font-medium line-clamp-2 group-hover:underline">
+        {{ product.title }}
+      </h3>
+
+      <!-- Reviews -->
+      <div class="flex items-center gap-2 text-sm">
+        <div class="flex items-center">
+          {% for i in (1..5) %}
+            <svg class="w-4 h-4 fill-current text-black" viewBox="0 0 24 24">
+              <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/>
+            </svg>
+          {% endfor %}
+        </div>
+        <span class="text-gray-600">1234 {{ 'products.reviews' | t }}</span>
+      </div>
+
+      <!-- Price -->
+      <div class="flex items-center gap-2">
+        <span class="text-lg font-bold">
+          {{ product.price | money }}
+        </span>
+        {% if product.compare_at_price > product.price %}
+          <span class="text-sm text-gray-500 line-through">
+            {{ product.compare_at_price | money }}
+          </span>
+        {% endif %}
+      </div>
+    </div>
+  </a>
+</div>

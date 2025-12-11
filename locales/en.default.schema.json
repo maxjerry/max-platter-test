@@ -72,5 +72,33 @@
       "subtitle": "Subtitle",
       "normal": "Normal text"
     },
+  },
+  "sections": {
+    "best_sellers": {
+      "name": "Best Sellers",
+      "settings": {
+        "heading": {
+          "label": "Heading"
+        },
+        "collection": {
+          "label": "Collection"
+        },
+        "show_view_all": {
+          "label": "Show view all link"
+        },
+        "view_all_text": {
+          "label": "View all text"
+        },
+        "show_more_text": {
+          "label": "Show more button text"
+        },
+        "show_less_text": {
+          "label": "Show less button text"
+        }
+      },
+      "presets": {
+        "name": "Best Sellers"
+      }
+    }
   }
 }

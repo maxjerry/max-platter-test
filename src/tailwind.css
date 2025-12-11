@@ -1,5 +1,94 @@
 @import "tailwindcss" source('../**/*.liquid');
 
 @theme {
+  /* Custom fonts */
+  --font-poppins: 'Poppins', sans-serif;
+  --font-source-serif: 'Source Serif Pro', serif;
+  --font-bebas: 'Bebas Neue', cursive;
   
+  /* Font family utilities */
+  --font-family-sans: var(--font-poppins);
+  --font-family-serif: var(--font-source-serif);
+  --font-family-display: var(--font-bebas);
+  
+  /* Custom spacing for product grids */
+  --spacing-product-gap: 1rem;
+  --spacing-product-gap-md: 1.5rem;
+  
+  /* Custom widths */
+  --width-product-card: 300px;
+  
+  /* Custom animations */
+  --animate-fade-in: fade-in 0.3s ease-in forwards;
+  
+  /* Scrollbar customization */
+  --scrollbar-height: 8px;
+  --scrollbar-thumb: #9ca3af;
+  --scrollbar-thumb-hover: #6b7280;
+}
+
+@keyframes fade-in {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+/**
+ * Custom component classes using @apply
+ */
+.best-sellers-grid {
+  @apply grid grid-cols-2 gap-4;
+  @apply md:flex md:gap-6 md:overflow-x-auto md:pb-4 md:scroll-smooth;
+  
+  /* Scrollbar styling */
+  &::-webkit-scrollbar {
+    height: var(--scrollbar-height);
+  }
+  
+  &::-webkit-scrollbar-track {
+    @apply bg-transparent;
+  }
+  
+  &::-webkit-scrollbar-thumb {
+    background-color: var(--scrollbar-thumb);
+    @apply rounded;
+    
+    &:hover {
+      background-color: var(--scrollbar-thumb-hover);
+    }
+  }
+}
+
+.product-card {
+  @apply flex-none w-full md:w-product-card;
+  
+  /* Mobile: hide products 5+ initially */
+  @media (max-width: 767px) {
+    &:nth-child(n+5) {
+      @apply hidden;
+    }
+  }
+  
+  /* Show all products when parent has show-all class */
+  @media (max-width: 767px) {
+    .show-all & {
+      @apply block;
+      animation: var(--animate-fade-in);
+    }
+  }
+}
+
+.product-badge {
+  @apply inline-block px-3 py-1 rounded-full text-xs font-bold uppercase;
+}
+
+.product-badge--best-seller {
+  @apply bg-white text-black border-2 border-black;
+}
+
+.product-badge--discount {
+  @apply bg-green-700 text-white;
 }

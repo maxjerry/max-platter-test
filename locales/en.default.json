@@ -48,5 +48,13 @@
     "submit": "Search",
     "no_results_html": "No results found for {{ terms }}",
     "results_for_html": "{{ count }} results found for {{ terms }}"
-  }
+  },
+  "products": {
+    "badges": {
+      "best_seller": "Best Seller",
+      "save": "Save"
+    },
+    "reviews": "Reviews",
+    "product_title": "Product Title"
+  },
 }
